@@ -1,0 +1,28 @@
+# Clear all current variables and plots
+rm(list = ls())
+graphics.off()
+
+# Set the seed for reproducibility
+set.seed(2020)
+
+# Generate a random sample from a gamma distribution
+data <- rgamma(n = 1000, shape = 5, rate = 1)
+
+# Create a histogram of the data
+hist(data, breaks = 30, col = "skyblue", xlab = "Value", ylab = "Frequency", main = "Histogram of Data")
+
+# Calculate the probability of values above 5 using data
+prob_above5 <- sum(data > 5) / length(data)
+cat("Probability of values above 5:", prob_above5, "\n")
+
+# Calculate the probability of values below 4 using data
+prob_below4 <- sum(data < 4) / length(data)
+cat("Probability of values below 4:", prob_below4, "\n")
+
+# Calculate the cumulative probability of values above 5
+gamma_above5 <- pgamma(5, shape = 5, rate = 1, lower.tail = FALSE)
+cat("Cumulative probability of values above 5:", gamma_above5, "\n")
+
+# Calculate the cumulative probability of values below 4
+gamma_below4 <- pgamma(4, shape = 5, rate = 1)
+cat("Cumulative probability of values below 4:", gamma_below4, "\n")
