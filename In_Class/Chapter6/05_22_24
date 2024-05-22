@@ -1,0 +1,27 @@
+xbar1 <- rep(0, 10000) # initialize this vector to zeros
+xbar2 <- rep(0, 10000) # initialize this vector to zeros
+xbar3 <- rep(0, 10000) # initialize this vector to zeros
+
+# 10,000 simulated die rolls for N=5,10,50
+for (i in 1:10000) {
+    x1 <- sample(1:6, 5, replace = TRUE) # simulate 5 die rolls
+    xbar1[i] <- mean(x1) # calculate the mean of the 5 rolls and store it in xbar1
+
+    x2 <- sample(1:6, 10, replace = TRUE) # simulate 10 die rolls
+    xbar2[i] <- mean(x2) # calculate the mean of the 10 rolls and store it in xbar2
+
+    x3 <- sample(1:6, 50, replace = TRUE) # simulate 50 die rolls
+    xbar3[i] <- mean(x3) # calculate the mean of the 50 rolls and store it in xbar3
+}
+
+par(mfrow = c(1, 3)) # set the layout of the plots to 1 row and 3 columns
+
+# Plotting histograms and density lines for each value of N
+hist(xbar1, main = "N=5", xlim = c(1, 6), prob = TRUE) # plot histogram for N=5
+lines(density(xbar1), lwd = 2, lty = 2) # add density line to the plot
+
+hist(xbar2, main = "N=10", xlim = c(1, 6), prob = TRUE) # plot histogram for N=10
+lines(density(xbar2), lwd = 2, lty = 2) # add density line to the plot
+
+hist(xbar3, main = "N=50", xlim = c(1, 6), prob = TRUE) # plot histogram for N=50
+lines(density(xbar3), lwd = 2, lty = 2) # add density line to the plot
