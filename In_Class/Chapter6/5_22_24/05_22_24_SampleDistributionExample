@@ -1,0 +1,23 @@
+# Set the parameters
+population_mean <- 100  # The mean of the population
+population_sd <- 6  # The standard deviation of the population
+sample_size <- 20  # The size of the sample
+sample_mean <- 95.9  # The mean of the sample
+
+# Calculate the standard error
+standard_error <- population_sd / sqrt(sample_size)  # Standard error formula
+
+# Calculate the z-score
+z_score <- (sample_mean - population_mean) / standard_error  # Z-score formula
+
+# Calculate the probability using the standard normal distribution
+probability <- pnorm(z_score)  # Probability calculation using pnorm function
+
+# Print the probability
+cat("The probability that the sample mean is less than", sample_mean, "years old is", probability, "\n")
+
+# Generate a plot
+x <- seq(80, 120, length.out = 100)  # Generate x values for the plot
+y <- dnorm(x, mean = population_mean, sd = standard_error)  # Generate y values using the normal distribution
+plot(x, y, type = "l", xlab = "Sample Mean", ylab = "Probability Density", main = "Distribution of Sample Mean")  # Plot the distribution
+abline(v = sample_mean, col = "red", lwd = 2)  # Add a vertical line for the sample mean

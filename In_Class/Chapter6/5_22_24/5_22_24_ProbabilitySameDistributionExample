@@ -1,0 +1,28 @@
+# Set the seed for reproducibility
+set.seed(123)
+
+# Generate 50 random variables from Uniform(10, 20)
+X <- runif(50, min = 10, max = 20)
+
+# Calculate the sample mean
+X_bar <- mean(X)
+
+# Calculate the sampling distribution of X¯
+sampling_dist <- replicate(10000, mean(runif(50, min = 10, max = 20)))
+
+# Calculate P(X <¯ 14)
+p_less_than_14 <- mean(sampling_dist < 14)
+
+# Print the result
+cat("Sampling Distribution of X¯:\n")
+print(sampling_dist)
+
+cat("\nP(X <¯ 14):", p_less_than_14)
+
+# Calculate the z-value
+z_value <- (X_bar - 14) / (sd(X) / sqrt(length(X)))
+
+# Plot the z-value
+hist(sampling_dist, main = "Sampling Distribution of X¯", xlab = "X¯", ylab = "Frequency", col = "lightblue")
+abline(v = z_value, col = "red", lwd = 2)
+legend("topright", legend = paste("z =", round(z_value, 2)), col = "red", lwd = 2)
