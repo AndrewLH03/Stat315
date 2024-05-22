@@ -1,0 +1,13 @@
+# Set the value of lambda
+lambda <- 1000
+
+# Calculate the cumulative probability of the Poisson distribution
+under1000 <- ppois(1000, lambda)
+
+# Print the result using cat
+cat("Probability of X less than or equal to 1000", under1000, "\n")
+
+above950 <- 1 - ppois(950, lamda)
+
+# Print the result using cat
+cat("Probability of X more than 950", above950, "\n")
