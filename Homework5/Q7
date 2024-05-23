@@ -1,0 +1,80 @@
+# (b) What is the sample mean of the 10,000 simulations?
+mean_of_means = mean(means)
+cat("Sample Mean of 10,000 simulations:", mean_of_means, "\n")
+
+# (c) From theory, what is E[X] for this example?
+expected_value = 1
+cat("Theoretical Expected Value (E[X]):", expected_value, "\n")
+
+# (d) What is the standard deviation of the 10,000 simulations?
+sd_of_means = sd(means)
+cat("Standard Deviation of 10,000 simulations:", sd_of_means, "\n")
+
+# (e) From theory, what is SE[X] for this example?
+standard_error = sqrt(expected_value / 10)
+cat("Theoretical Standard Error (SE[X]):", standard_error, "\n")
+
+# (f) What proportion of the simulated sample means are less than 0.9?
+proportion_less_than_0.9 = mean(means < 0.9)
+cat("Proportion of simulated sample means < 0.9:", proportion_less_than_0.9, "\n")
+
+# (g) Using the Central Limit Theorem, calculate the (approximate) probability that P(X < 0.9) for n=10 and 𝜆=1.
+approx_prob_less_than_0.9 = pnorm(0.9, mean = expected_value, sd = standard_error)
+cat("Approximate probability P(X < 0.9) for n=10 and 𝜆=1:", approx_prob_less_than_0.9, "\n")
+
+# Adjusting sample size to n=1
+set.seed(2020)
+nsims_n1 = 10000
+means_n1 = rep(0, nsims_n1)
+for (i in 1:nsims_n1) {
+    data_n1 = rpois(n = 1, lambda = 1)
+    means_n1[i] = mean(data_n1)
+}
+
+# (h) What is the sample mean of the simulations when n=1?
+mean_of_means_n1 = mean(means_n1)
+cat("Sample Mean when n=1:", mean_of_means_n1, "\n")
+
+# (i) What is the standard error when n=1 from our sample?
+standard_error_n1 = sqrt(expected_value / 1)
+cat("Standard Error when n=1:", standard_error_n1, "\n")
+
+# Adjusting sample size to n=100
+set.seed(2020)
+nsims_n100 = 10000
+means_n100 = rep(0, nsims_n100)
+for (i in 1:nsims_n100) {
+    data_n100 = rpois(n = 100, lambda = 1)
+    means_n100[i] = mean(data_n100)
+}
+
+# (j) What is the sample mean of the simulations when n=100?
+mean_of_means_n100 = mean(means_n100)
+cat("Sample Mean when n=100:", mean_of_means_n100, "\n")
+
+# (k) What is the standard error when n=100 from our sample?
+standard_error_n100 = sqrt(expected_value / 100)
+cat("Standard Error when n=100:", standard_error_n100, "\n")
+
+# (l) Suppose we want a theoretical standard error of 0.25. What should be our sample size?
+sample_size_l = (expected_value^2) / (0.25^2)
+cat("Sample Size for theoretical standard error of 0.25:", sample_size_l, "\n")
+
+# (m) Using the provided code above and the sample size you found in (l) and use R to complete 10,000 simulations. What is the standard deviation of the simulated sample means?
+set.seed(2020)
+nsims_l = 10000
+means_l = rep(0, nsims_l)
+for (i in 1:nsims_l) {
+    data_l = rpois(n = sample_size_l, lambda = 1)
+    means_l[i] = mean(data_l)
+}
+sd_of_means_l = sd(means_l)
+cat("Standard Deviation of simulated sample means (sample size =", sample_size_l, "):", sd_of_means_l, "\n")
+
+# (n) Which of the following are true? (Check all that apply)
+# Even if our data is not normally distributed, the distribution of sample means will be approximately normally distributed for a sufficiently large sample size.
+# The Central Limit Theorem only applies to data that is normally distributed to begin with.
+# The sample mean converges to the population mean, as the sample size increases.
+# As the sample size increases, the standard errors tend to increase.
+cat("True statements for (n): Even if our data is not normally distributed, the distribution of sample means will be approximately normally distributed for a sufficiently large sample size.", "\n")
+cat("True statements for (n): The sample mean converges to the population mean, as the sample size increases.", "\n")
