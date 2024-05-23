@@ -1,0 +1,29 @@
+set.seed(2020)
+
+nsims <- 10000  # number of simulations
+means <- rep(0, nsims)  # vector to store sample mean from each simulation
+
+for (i in 1:nsims) {
+    data <- rpois(n = 10, lambda = 1)
+    means[i] <- mean(data)
+}
+
+# Plotting histogram of means with improved appearance
+hist(means, 
+     breaks = "FD",  # Use the Freedman-Diaconis rule for determining the number of bins
+     col = "lightblue",  # Set the color of the bars
+     border = "white",  # Set the color of the bar borders
+     main = "Histogram of Means",  # Set the title of the plot
+     xlab = "Sample Mean",  # Set the x-axis label
+     ylab = "Frequency",  # Set the y-axis label
+     xlim = c(0, 2),  # Set the x-axis limits
+     ylim = c(0, 4000),  # Set the y-axis limits
+     las = 1)  # Rotate x-axis labels horizontally
+
+# Calculating and printing the mean of means
+mean_of_means <- mean(means)
+cat("Mean of means:", mean_of_means, "\n")
+
+# Calculating and printing the standard deviation of means
+sd_of_means <- sd(means)
+cat("Standard deviation of means:", sd_of_means, "\n")
