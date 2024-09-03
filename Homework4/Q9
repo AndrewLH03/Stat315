@@ -1,0 +1,61 @@
+# Install and load the moments package
+install.packages("moments")
+library(moments)
+
+# Generate 1000 random numbers from a normal distribution
+x1 <- rnorm(n = 1000, mean = 1, sd = 1)
+
+# Generate 1000 random numbers from an exponential distribution
+x2 <- rexp(n = 1000, rate = 1)
+
+# Calculate the mean of x1
+mean_x1 <- mean(x1)
+
+# Calculate the mean of x2
+mean_x2 <- mean(x2)
+
+# Calculate the variance of x1
+var_x1 <- var(x1)
+
+# Calculate the variance of x2
+var_x2 <- var(x2)
+
+cat("Mean of x1:", mean_x1, "\n")
+cat("Mean of x2:", mean_x2, "\n")
+
+cat("Variance of x1:", var_x1, "\n")
+cat("Variance of x2:", var_x2, "\n")
+
+# Calculate the skewness of x1
+skewness_x1 <- skewness(x1)
+
+# Calculate the skewness of x2
+skewness_x2 <- skewness(x2)
+
+if (abs(skewness_x1) > abs(skewness_x2)) {
+    cat("x1 is highly skewed\n")
+} else if (abs(skewness_x2) > abs(skewness_x1)) {
+    cat("x2 is highly skewed\n")
+} else {
+    cat("Both datasets have similar skewness\n")
+}
+
+# Calculate the probability of x1 being less than 1
+prob_x1_less_than_1 <- pnorm(1, mean = mean_x1, sd = sqrt(var_x1))
+
+# Calculate the probability of x2 being less than 1
+prob_x2_less_than_1 <- pnorm(1, mean = mean_x2, sd = sqrt(var_x2))
+
+if (prob_x1_less_than_1 > prob_x2_less_than_1) {
+    cat("x1 has a greater probability of being less than 1\n")
+} else if (prob_x2_less_than_1 > prob_x1_less_than_1) {
+    cat("x2 has a greater probability of being less than 1\n")
+} else {
+    cat("Both datasets have the same probability of being less than 1\n")
+}
+
+# Plot the histogram of x1
+hist(x1, main = "Histogram of x1", xlab = "Values", ylab = "Frequency")
+
+# Plot the histogram of x2
+hist(x2, main = "Histogram of x2", xlab = "Values", ylab = "Frequency")

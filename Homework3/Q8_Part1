@@ -1,0 +1,22 @@
+# Define the free throw success rate
+getFreeThrow <- 0.733
+
+# Define the number of trials
+n <- 100
+
+# Calculate the probability of making at most 80 free throws
+p_max80 <- pbinom(80, n, getFreeThrow)
+
+# Print the result with improved output
+cat("Maximum 80 Free Throws Percent:", p_max80, "\n")
+
+# Calculate the probability of making at least 75 free throws
+p_min75 <- 1 - pbinom(75, n, getFreeThrow)
+
+# Print the result with improved output
+cat("Minimum 75 Free Throws Percent:", p_min75, "\n")
+
+p_exactly73 <- dbinom(73, n, getFreeThrow)
+
+# Print the result with improved output
+cat("Exactly 73 Free Throws Percent:", p_exactly73, "\n")

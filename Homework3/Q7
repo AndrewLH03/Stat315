@@ -1,0 +1,16 @@
+set.seed(2020)  # Set the seed for reproducibility
+data <- rbinom(n = 10000, size = 10, prob = 0.73)  # Generate a random binomial distribution
+
+mean_value <- mean(data)  # Calculate the mean of the data
+var_value <- var(data)  # Calculate the variance of the data
+
+cat("Mean:", mean_value, "\n")  # Print the mean value
+cat("Variance:", var_value, "\n")  # Print the variance value
+
+# (d) What is the probability that X=8 in our sample?
+p_8 <- sum(data == 8) / length(data)
+cat("Probability of X=8:", p_8, "\n")
+
+# (e) What is the probability that X is at least 8 in our sample?
+p_min8 <- sum(data >= 8) / length(data)
+cat("Probability of X>=8:", p_min8, "\n")
